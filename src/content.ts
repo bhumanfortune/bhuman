@@ -1,0 +1,187 @@
+export const contactEmail = 'info@bhumanfortune.com';
+
+export const services = [
+  {
+    "id": "digital-launch",
+    "name": "Bhuman Digital Launch",
+    "tagline": "Build Your Digital Presence. Grow Your Business.",
+    "summary": "Your business deserves a professional digital identity that inspires confidence, attracts customers, and supports growth.\nBhuman Digital Launch helps entrepreneurs, startups, creators, and established businesses establish a strong online presence through modern websites, digital branding, and engaging business content.",
+    "offers": [
+      "Business Website Design & Development: Responsive, professional websites designed around your business goals.",
+      "Landing Pages: Dedicated pages for products, services, promotions, and campaigns.",
+      "E-commerce Solutions: Online product catalogues, shopping experiences, and payment integrations.",
+      "Business Branding: Logo concepts, brand colours, business profiles, and digital identity materials.",
+      "Search Engine Optimization: Basic on-page SEO, metadata, and search-friendly website structure.",
+      "Website Maintenance: Content updates, improvements, technical support, and ongoing maintenance.",
+      "Digital Marketing Creatives: Social media banners, brochures, advertisements, and promotional designs."
+    ],
+    "audience": "Startups, small businesses, retailers, consultants, creators, educational institutions, and local service providers.",
+    "benefits": [
+      "Establish a credible online presence.",
+      "Reach customers beyond your physical location.",
+      "Generate enquiries and business opportunities.",
+      "Create a consistent and professional brand identity.",
+      "Build a scalable foundation for future digital growth."
+    ],
+    "cta": "Get Your Business Online"
+  },
+  {
+    "id": "business-automation",
+    "name": "Bhuman Business Automation",
+    "tagline": "Simplify Processes. Empower People.",
+    "summary": "Repetitive tasks, disconnected systems, and manual approvals can slow down your business.\nBhuman Business Automation helps organizations digitize operations, reduce manual effort, improve visibility, and build efficient business processes using Microsoft Power Platform and related technologies.",
+    "offers": [
+      "Power Apps Development: Custom canvas and model-driven applications tailored to business needs.",
+      "Power Automate Workflows: Automated approvals, notifications, reminders, escalations, and integrations.",
+      "Power BI Dashboards: Business reports and interactive dashboards for informed decision-making.",
+      "Dataverse Solutions: Structured business data management with appropriate access controls.",
+      "SharePoint Integration: Document management, collaboration, lists, and business workflows.",
+      "Business Process Digitization: Convert spreadsheets, emails, and paper-based activities into managed digital processes.",
+      "Application Modernization: Improve or replace existing manual and legacy workflows.",
+      "Power Platform Governance: Guidance on security, environment strategy, application lifecycle management, and maintainability."
+    ],
+    "audience": "SMEs, manufacturers, service organizations, corporate departments, educational institutions, and enterprises using Microsoft 365.",
+    "benefits": [
+      "Reduce repetitive manual work.",
+      "Improve process consistency and accountability.",
+      "Accelerate approval cycles.",
+      "Increase operational transparency.",
+      "Support secure, scalable business operations."
+    ],
+    "cta": "Automate Your Business"
+  },
+  {
+    "id": "ai-enablement",
+    "name": "Bhuman AI Enablement",
+    "tagline": "Make Artificial Intelligence Work for Your Business.",
+    "summary": "Artificial intelligence can help businesses work smarter, improve decision-making, and discover new opportunities. The key is identifying practical applications that deliver measurable value.\nBhuman AI Enablement helps organizations explore, plan, prototype, and adopt generative AI and intelligent automation responsibly.",
+    "offers": [
+      "AI Opportunity Assessment: Identify and prioritize practical AI use cases across business processes.",
+      "Generative AI Consulting: Guidance on using generative AI for productivity, knowledge management, and business operations.",
+      "AI Assistants & Knowledge Solutions: Design and development of assistants using approved organizational information.",
+      "Microsoft Copilot Studio Solutions: Conversational agents, business knowledge assistants, and workflow-connected experiences.",
+      "Intelligent Document Processing: Document extraction, classification, and validation using suitable AI technologies.",
+      "AI-Powered Automation: Combine AI capabilities with Power Automate and enterprise workflows.",
+      "AI Adoption Workshops: Practical awareness and enablement sessions for business teams.",
+      "Responsible AI Guidance: Support for human oversight, data protection, governance, and appropriate AI usage."
+    ],
+    "audience": "Organizations beginning their AI journey, SMEs, enterprise teams, professional service providers, and businesses looking to improve productivity.",
+    "benefits": [
+      "Discover valuable AI opportunities.",
+      "Reduce time spent searching and processing information.",
+      "Improve employee productivity.",
+      "Accelerate knowledge access.",
+      "Introduce AI with appropriate security and human oversight."
+    ],
+    "cta": "Explore AI for Your Business"
+  },
+  {
+    "id": "delivery-excellence",
+    "name": "Bhuman Delivery Excellence",
+    "tagline": "Plan with Confidence. Execute with Excellence.",
+    "summary": "Successful business initiatives require more than technology. They need clear objectives, disciplined execution, effective collaboration, and transparent governance.\nBhuman Delivery Excellence provides professional project management, Agile delivery, Scrum facilitation, and operational governance services to help organizations deliver initiatives effectively.",
+    "offers": [
+      "Project Management Services: Planning, scheduling, execution, monitoring, and delivery coordination.",
+      "Agile & Scrum Facilitation: Sprint planning, backlog refinement, daily Scrum facilitation, reviews, and retrospectives.",
+      "PMO Setup & Governance: Project reporting, governance frameworks, dashboards, and management processes.",
+      "Digital Transformation Delivery: Coordination of technology modernization, automation, and business transformation initiatives.",
+      "Risk & Issue Management: Risk registers, issue tracking, dependencies, escalations, and corrective action plans.",
+      "Stakeholder & Vendor Management: Communication, coordination, governance meetings, and delivery oversight.",
+      "Service Delivery Improvement: Operational reporting, service performance monitoring, and continuous improvement.",
+      "Project Recovery & Assessment: Review delivery challenges and recommend structured improvement actions."
+    ],
+    "audience": "IT companies, SMEs, enterprise technology departments, startups scaling their delivery operations, and organizations executing transformation projects.",
+    "benefits": [
+      "Improve project visibility and accountability.",
+      "Strengthen stakeholder communication.",
+      "Identify and address delivery risks early.",
+      "Improve team coordination and execution discipline.",
+      "Support predictable, quality-focused project outcomes."
+    ],
+    "cta": "Strengthen Your Project Delivery"
+  },
+  {
+    "id": "creative-studio",
+    "name": "Bhuman Creative Studio",
+    "tagline": "Imagine Boldly. Create Beautifully.",
+    "summary": "Every idea deserves to be communicated clearly and creatively.\nBhuman Creative Studio helps businesses, entrepreneurs, educators, and content creators transform ideas into professional visual content and compelling business communication.\nUsing creative design tools, including Canva, we develop materials that help brands communicate, engage audiences, and present ideas with confidence.",
+    "offers": [
+      "Brand Identity Design: Logo concepts, colour palettes, and basic brand guidelines.",
+      "Social Media Creatives: Posts, banners, advertisements, and campaign visuals.",
+      "Corporate Presentations: Professional business presentations, proposals, and executive decks.",
+      "Startup Pitch Decks: Investor and incubator presentations structured around your business idea.",
+      "Business Brochures & Profiles: Company profiles, service catalogues, flyers, and promotional material.",
+      "Infographics & Visual Storytelling: Convert complex information into easy-to-understand visuals.",
+      "Educational Content Design: Training presentations, learning materials, and awareness campaigns.",
+      "Digital Content Templates: Reusable branded templates for everyday business communication."
+    ],
+    "audience": "Startups, entrepreneurs, content creators, educators, small businesses, consultants, NGOs, and corporate teams.",
+    "benefits": [
+      "Build a recognizable visual identity.",
+      "Communicate business ideas more effectively.",
+      "Create professional marketing materials.",
+      "Save time through reusable design templates.",
+      "Strengthen customer engagement and brand consistency."
+    ],
+    "cta": "Bring Your Ideas to Life"
+  }
+] as const;
+
+export const values = [
+  [
+    "Business-Focused Solutions",
+    "We start by understanding your objectives, challenges, and desired outcomes—not simply selecting technology."
+  ],
+  [
+    "Integrated Capabilities",
+    "From websites and branding to business automation, AI enablement, and project management, we bring complementary services together."
+  ],
+  [
+    "Practical Innovation",
+    "We focus on solutions that are usable, maintainable, and appropriate for your business."
+  ],
+  [
+    "Transparent Collaboration",
+    "We believe in clear communication, realistic commitments, and professional delivery."
+  ],
+  [
+    "Purpose-Driven Approach",
+    "We aim to create meaningful value for customers, employees, communities, and the wider society."
+  ]
+] as const;
+
+export const solutions = [
+  ['Creative communication', 'Communicate business ideas through visual content, presentations, and branded materials.', '/services#creative-studio'],
+  ['Workflow automation', 'Digitize requests, approvals, and handoffs so teams can see what needs attention.', '/services#business-automation'],
+  ['Digital presence', 'Build a professional online presence through websites, digital branding, and business content.', '/services#digital-launch'],
+  ['AI adoption', 'Evaluate a specific workflow, define how to measure quality, and plan for human review.', '/services#ai-enablement'],
+  ['Program delivery', 'Turn a modernization roadmap into a sequence of accountable decisions and releases.', '/services#delivery-excellence'],
+];
+export const industries = [
+  ['Startups and small businesses', 'Build a digital presence, create a professional brand identity, and establish efficient business processes.'],
+  ['Manufacturing and enterprises', 'Digitize operations, improve visibility, and support structured project delivery.'],
+  ['Professional and local services', 'Develop websites, business content, and automation that support your day-to-day work.'],
+  ['Education and content creators', 'Create learning materials, training presentations, digital content, and branded communication.'],
+  ['IT companies and technology teams', 'Strengthen Agile delivery, project governance, stakeholder coordination, and service delivery.'],
+  ['NGOs and corporate teams', 'Communicate ideas through professional presentations, brochures, and reusable design templates.'],
+];
+export const insights = [
+  ['Choosing your first workflow to automate', 'Start with a process that happens frequently and has a clear owner. Record the time spent, exceptions, and missed handoffs. Use that baseline to test whether automation actually improves the workflow.'],
+  ['What to measure in an AI pilot', 'Define acceptable output before choosing tooling. Build a representative evaluation set, document when human review is required, and track quality and time saved together.'],
+  ['Preparing data for a modernization project', 'List the sources your process depends on, who owns them, and where records disagree. Agree on shared definitions and check a sample before migrating or integrating data.'],
+];
+export const pages = {
+  '/': ['Technology with purpose', 'Bhuman Fortune helps businesses grow through websites, branding, business automation, AI enablement, and project delivery.'],
+  '/about': ['About', 'Get to know BHUMAN FORTUNE and our approach to technology consulting and delivery.'],
+  '/services': ['Services', 'Smart Solutions. Meaningful Impact. Explore Bhuman Digital Launch, Business Automation, AI Enablement, Delivery Excellence, and Creative Studio.'],
+  '/solutions': ['Solutions', 'Explore digital presence, business automation, AI adoption, project delivery, and creative communication.'],
+  '/industries': ['Industries', 'Supporting startups, SMEs, manufacturers, service organizations, educators, creators, NGOs, and enterprise teams.'],
+  '/initiatives': ['Initiatives', 'Learn about Bhuman Setu, an initiative currently in development.'],
+  '/insights': ['Insights', 'Read practical guidance on automation, AI adoption, and technology modernization.'],
+  '/contact': ['Contact', 'Tell BHUMAN FORTUNE about your technology project or collaboration.'],
+  '/privacy': ['Privacy Policy', 'Website privacy notice for BHUMAN FORTUNE.'],
+  '/terms': ['Terms', 'Website terms for BHUMAN FORTUNE.'],
+} as const;
+export type Page = keyof typeof pages;
+export function normalize(path: string) { return path.replace(/\/+$/, '') || '/'; }
+export function isPage(path: string): path is Page { return Object.hasOwn(pages, path); }
