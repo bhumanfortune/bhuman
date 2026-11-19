@@ -8,6 +8,14 @@ Use Node.js 22. Run `npm ci`, then `npm run dev` for the frontend. Run `npm run 
 
 ## Production setup
 
+### Cloudflare Pages contact email
+
+The GitHub-connected Pages project `bhuman` builds with `npm run build` and publishes `dist`. Pages deploys `functions/api/contact.ts` as `/api/contact`, using the shared email handler. In the Pages project's production **Settings → Variables and Secrets**, add `RESEND_API_KEY` as an encrypted secret and `CONTACT_FROM` as a variable. Use a Resend-verified sender, such as `Bhuman Fortune Website <website@bhumanfortune.com>`. Redeploy after saving these values. All inquiries are sent to `info@bhumanfortune.com`, with the visitor's email as Reply-To.
+
+Verify the sending domain in Resend using its supplied DNS records. Keep the existing mailbox provider's MX records. Confirm that `info@bhumanfortune.com` can receive mail, then submit a test inquiry and verify inbox receipt. Pages retains request validation, request size limits, origin checks, and the honeypot. For request rate limiting on Pages, configure a Cloudflare zone rate limiting rule matching `/api/contact`. The standalone Worker uses its existing `CONTACT_LIMIT` binding.
+
+### Standalone Worker deployment
+
 1. Confirm the legal entity and company details, the privacy contact and retention policy, and the final Privacy Policy and Terms. Update the legal pages and their prerender indexing rules after review.
 2. Confirm the site hostname. Set the GitHub production environment variable `SITE_URL` to its HTTPS origin to include canonical URLs, robots.txt, and the sitemap. Add `CLOUDFLARE_ACCOUNT_ID` as an environment variable and `CLOUDFLARE_API_TOKEN` as an environment secret.
 3. Configure the `RESEND_API_KEY` and `CONTACT_FROM` Worker secrets using Wrangler. Use a sender from a verified domain. All website inquiries are addressed to `info@bhumanfortune.com`. On a new account, deploy an initial Worker to obtain its URL and configure the secrets before enabling production contact traffic.

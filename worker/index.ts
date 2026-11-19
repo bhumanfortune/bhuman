@@ -1,10 +1,13 @@
 import { contactEmail, services } from '../src/content';
 
-interface Env {
-  ASSETS: { fetch(request: Request): Promise<Response> };
-  CONTACT_LIMIT: { limit(options: {key: string}): Promise<{success: boolean}> };
+export interface ContactEnv {
+  CONTACT_LIMIT?: { limit(options: {key: string}): Promise<{success: boolean}> };
   RESEND_API_KEY?: string;
   CONTACT_FROM?: string;
+}
+
+interface Env extends ContactEnv {
+  ASSETS: { fetch(request: Request): Promise<Response> };
 }
 
 const interests = new Set<string>([...services.map(service => service.name), 'Bhuman Setu', 'Other']);
@@ -40,13 +43,15 @@ async function readBody(request: Request) {
   }
 }
 
-async function contact(request: Request, env: Env) {
+async function contact(request: Request, env: ContactEnv) {
   if (request.method !== 'POST') return answer(405, 'Use POST to submit an inquiry.');
   if (request.headers.get('Origin') !== new URL(request.url).origin) return answer(403, 'Submit the form from the contact page.');
   if (request.headers.get('Content-Type')?.split(';')[0].trim() !== 'application/json') return answer(415, 'Submit using the contact form.');
-  if (!env.RESEND_API_KEY || !env.CONTACT_FROM || !env.CONTACT_LIMIT) return answer(503, 'The contact form is temporarily unavailable.');
-  const {success} = await env.CONTACT_LIMIT.limit({key: request.headers.get('CF-Connecting-IP') || 'unknown'});
-  if (!success) return answer(429, 'Too many attempts. Wait a minute and try again.');
+  if (!env.RESEND_API_KEY || !env.CONTACT_FROM) return answer(503, 'The contact form is temporarily unavailable.');
+  if (env.CONTACT_LIMIT) {
+    const {success} = await env.CONTACT_LIMIT.limit({key: request.headers.get('CF-Connecting-IP') || 'unknown'});
+    if (!success) return answer(429, 'Too many attempts. Wait a minute and try again.');
+  }
   let body: unknown;
   try {
     const content = await readBody(request);
@@ -81,15 +86,20 @@ async function contact(request: Request, env: Env) {
   return answer(200, 'Inquiry received.');
 }
 
+export async function handleContact(request: Request, env: ContactEnv) {
+  try {
+    return await contact(request, env);
+  } catch {
+    return answer(503, 'The form is temporarily unavailable. Try again later.');
+  }
+}
+
 export default {
   async fetch(request: Request, env: Env) {
     const url = new URL(request.url);
     if (url.pathname === '/api/contact') {
-      try {
-        return await contact(request, env);
-      } catch {
-        return answer(503, 'The form is temporarily unavailable. Try again later.');
-      }
+      if (!env.CONTACT_LIMIT) return answer(503, 'The contact form is temporarily unavailable.');
+      return handleContact(request, env);
     }
     if (url.pathname.startsWith('/api/')) return answer(404, 'Endpoint not found.');
     const asset = await env.ASSETS.fetch(request);
