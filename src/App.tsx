@@ -101,7 +101,6 @@ function ContactBanner() {
 
 function Home() {
   return <>
-    <div className="brand-banner"><div className="shell"><div className="brand-banner-frame"><img src="/bhuman-banner.jpg" alt="Bhuman Fortune — AI, Technology, Digital Transformation, Innovation" width="2000" height="1414" fetchPriority="high"/></div></div></div>
     <section className="hero"><div className="shell hero-inner">
       <p className="eyebrow"><span/>DRIVEN BY PURPOSE. DELIVERING HAPPINESS.</p>
       <h1>Smart solutions.<br/>Meaningful impact<span>.</span></h1>
