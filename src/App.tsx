@@ -122,7 +122,8 @@ function Contact() {
     setState({busy:true,message:'',error:false});
     try {
       const response = await fetch('/api/contact', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form)))});
-      const result = await response.json();
+      const result = await response.json().catch(() => null);
+      if (!result || typeof result.message !== 'string') throw new Error('Email delivery is temporarily unavailable. Please email ' + contactEmail + ' or try again later.');
       if (!response.ok) throw new Error(result.message || 'Could not send your inquiry.');
       form.reset();
       setState({busy:false,message:'Your inquiry was received. Thank you for getting in touch.',error:false});

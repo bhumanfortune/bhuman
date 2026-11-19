@@ -82,7 +82,14 @@ async function contact(request: Request, env: ContactEnv) {
       text:['Name: ' + name, 'Email: ' + email, 'Organization: ' + organization, 'Interest: ' + interest, '', message].join('\n'),
     }),
   });
-  if (!result.ok) return answer(502, 'Your inquiry could not be sent. Try again later.');
+  if (!result.ok) {
+    const error = await result.json().catch(() => null) as {name?: string} | null;
+    console.error('Contact email provider rejected request', {
+      status: result.status,
+      code: typeof error?.name === 'string' ? error.name : 'unknown',
+    });
+    return answer(503, 'Email delivery is temporarily unavailable. Please email ' + contactEmail + ' or try again later.');
+  }
   return answer(200, 'Inquiry received.');
 }
 
@@ -90,6 +97,7 @@ export async function handleContact(request: Request, env: ContactEnv) {
   try {
     return await contact(request, env);
   } catch {
+    console.error('Contact email handler could not complete the request');
     return answer(503, 'The form is temporarily unavailable. Try again later.');
   }
 }
