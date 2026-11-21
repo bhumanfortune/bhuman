@@ -1,5 +1,3 @@
-export const bookingUrl = ''; // Add the public URL for the 30-minute booking calendar.
-export const phone: string = ''; // Add the international number for phone and WhatsApp.
 export const proofItems: readonly string[] = []; // Add approved case studies or credentials here.
 export const legal = {
   name: '[Legal company name]',

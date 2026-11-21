@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ChartNoAxesCombined, ChevronDown, Cog, Lightbulb, Menu, Network, Users, X } from 'lucide-react';
 import { contactEmail, industries, isPage, pages, services, solutions } from './content';
-import { bookingUrl, core, coreIds, faq, headline, offers, phone, principles, proofItems, setu, subheading, workSteps, articles, type CoreId } from './positioning';
+import { core, coreIds, faq, headline, offers, principles, proofItems, setu, subheading, workSteps, articles, type CoreId } from './positioning';
 import { ChecklistSignup, ContactLink, CoreCards, LegalCopy, ServiceDetail, Steps, TextList } from './SiteSections';
 
-const navigation = [['Services','/services'],['Offers','/offers'],['How We Work','/how-we-work'],['Insights','/insights'],['Bhuman Setu','/initiatives'],['About','/about'],['Contact','/contact']];
+const navigation = [['Services','/services'],['Offers','/offers'],['How We Work','/how-we-work'],['Insights','/insights'],['About','/about']];
 const servicePath = '/services/';
 const heroBenefits = [
   [Lightbulb, 'Solve', 'Challenges'],
@@ -176,10 +176,8 @@ function ContactDetails() {
   return <>
     <div className="contact-layout"><div className="article">
       <h2>Contact us</h2>
-      <p>Mumbai, India</p><p>We reply within one working day.</p>
+      <p>We reply within one working day.</p>
       <p><a className="text-link" href={'mailto:' + contactEmail}>{contactEmail}</a></p>
-      {bookingUrl ? <p><a className="text-link" href={bookingUrl}>Schedule a call</a></p> : <p>[Booking link]</p>}
-      <p>{phone ? <><a className="text-link" href={'tel:' + phone}>Call {phone}</a> · <a className="text-link" href={'https://wa.me/' + phone.replace(/\D/g, '')}>WhatsApp</a></> : '[Phone / WhatsApp number]'}</p>
     </div><Contact/></div>
     <section className="faq"><h2>Frequently asked questions</h2>
       {faq.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}
