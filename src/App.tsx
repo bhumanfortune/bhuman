@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ChartNoAxesCombined, ChevronDown, Cog, Lightbulb, Menu, Network, Users, X } from 'lucide-react';
 import { contactEmail, industries, isPage, pages, services, solutions } from './content';
-import { bookingUrl, core, coreIds, faq, headline, legal, offers, phone, principles, proofItems, setu, subheading, workSteps, articles, type CoreId } from './positioning';
+import { bookingUrl, core, coreIds, faq, headline, offers, phone, principles, proofItems, setu, subheading, workSteps, articles, type CoreId } from './positioning';
 import { BookCall, ChecklistSignup, CoreCards, LegalCopy, ServiceDetail, Steps, TextList } from './SiteSections';
 
 const navigation = [['Services','/services'],['Offers','/offers'],['How We Work','/how-we-work'],['Insights','/insights'],['Bhuman Setu','/initiatives'],['About','/about'],['Contact','/contact']];
@@ -223,7 +223,7 @@ export function App({path}: {path:string}) {
     <a className="skip-link" href="#main">Skip to content</a><Header path={path}/>
     <main id="main">{path === '/' ? <Home/> : <Inner path={path}/>}</main>
     <footer className="footer"><div className="shell footer-inner">
-      <p>© {new Date().getUTCFullYear()} BHUMAN FORTUNE<br/>{legal.name} · {legal.address} · {legal.gst}</p>
+      <p>© {new Date().getUTCFullYear()} BHUMAN FORTUNE</p>
       <nav aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms</a></nav>
     </div></footer>
   </>;
