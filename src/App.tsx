@@ -6,6 +6,7 @@ import { ChecklistSignup, ContactLink, CoreCards, LegalCopy, ServiceDetail, Step
 
 const navigation = [['Services','/services'],['Offers','/offers'],['How We Work','/how-we-work'],['Insights','/insights'],['About','/about']];
 const servicePath = '/services/';
+const additionalServices = services.filter(service => service.id === 'digital-launch' || service.id === 'creative-studio');
 const heroBenefits = [
   [Lightbulb, 'Solve', 'Challenges'],
   [Cog, 'Provide', 'Purposeful Services'],
@@ -55,8 +56,11 @@ function ServiceNavigation({path}: {path:string}) {
         type="button" aria-label="Service pages" aria-expanded={expanded} aria-controls="services-dropdown"
         onClick={() => setExpanded(value => !value)}><ChevronDown size={16} aria-hidden="true"/></button>
     </div>
-    <ul className="services-dropdown" id="services-dropdown" hidden={!expanded}>
-      {coreIds.map(id => <li key={id}><a href={servicePath + id} aria-current={path === servicePath + id ? 'page' : undefined} onClick={() => setExpanded(false)}>{core[id].name}</a></li>)}
+    <ul className="services-dropdown" id="services-dropdown" hidden={!expanded}
+      onClick={event => { if (event.target instanceof Element && event.target.closest('a')) setExpanded(false); }}>
+      {coreIds.map(id => <li key={id}><a href={servicePath + id} aria-current={path === servicePath + id ? 'page' : undefined}>{core[id].name}</a></li>)}
+      {additionalServices.map(service => <li key={service.id}><a href={servicePath + '#' + service.id}>{service.name}</a></li>)}
+      <li className="services-overview"><a href="/services" aria-current={path === '/services' ? 'page' : undefined}>View all services</a></li>
     </ul>
   </div>;
 }
@@ -79,7 +83,7 @@ function Header({path}: {path:string}) {
 function AlsoAvailable() {
   return <section className="also-services" aria-labelledby="also-available">
       <h2 id="also-available">Also available</h2><p>Websites, branding, and creative support.</p>
-      <div className="cards">{services.filter(service => service.id === 'digital-launch' || service.id === 'creative-studio').map(service =>
+      <div className="cards">{additionalServices.map(service =>
         <article className="card" id={service.id} key={service.id}><h3>{service.name}</h3><p>{service.tagline}</p><p>{service.summary.split('\n').slice(1).join(' ')}</p></article>
       )}</div>
   </section>;

@@ -159,6 +159,7 @@ button:disabled { cursor: wait; opacity: .7; }
 .services-dropdown[hidden] { display: none; }
 .services-dropdown a { display: block; padding: 12px; border-radius: 4px; font-size: .875rem; line-height: 1.5; }
 .services-dropdown a:hover, .services-dropdown a:focus-visible { background: #eaf3fd; color: #07519a; }
+.services-overview { border-top: 1px solid #dce3ec; margin-top: 4px; padding-top: 4px; }
 .services-intro { margin-bottom: 28px; }
 .service-details .service-card:target { border-color: #07519a; box-shadow: 0 0 0 2px #07519a22; }
 
