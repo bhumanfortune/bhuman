@@ -150,14 +150,16 @@ button:disabled { cursor: wait; opacity: .7; }
 .contact-email { margin-top: 22px; }
 
 .services-navigation { position: relative; }
-.services-trigger { display: flex; align-items: center; gap: 5px; min-height: 44px; font: inherit; color: inherit; }
-.services-trigger:hover, .services-trigger.current, .services-trigger[aria-expanded=true] { color: #07519a; }
+.services-controls { display: flex; align-items: center; gap: 4px; }
+.services-link { display: inline-flex; align-items: center; min-height: 44px; }
+.services-link:hover, .services-link[aria-current=page], .services-trigger:hover, .services-trigger[aria-expanded=true] { color: #07519a; }
+.services-trigger { display: grid; place-items: center; min-width: 28px; min-height: 44px; color: inherit; }
 .services-trigger[aria-expanded=true] svg { transform: rotate(180deg); }
 .services-dropdown { position: absolute; top: 100%; left: -16px; width: 290px; max-width: calc(100vw - 36px); margin: 0; padding: 8px; list-style: none; border: 1px solid #dce3ec; border-radius: 8px; background: white; box-shadow: 0 12px 30px #12203522; }
 .services-dropdown[hidden] { display: none; }
 .services-dropdown a { display: block; padding: 12px; border-radius: 4px; font-size: .875rem; line-height: 1.5; }
 .services-dropdown a:hover, .services-dropdown a:focus-visible { background: #eaf3fd; color: #07519a; }
-.services-overview { border-top: 1px solid #dce3ec; margin-top: 4px; padding-top: 4px; }
+.services-intro { margin-bottom: 28px; }
 .service-details .service-card:target { border-color: #07519a; box-shadow: 0 0 0 2px #07519a22; }
 
 h2, h3 { color: #07519a; }
@@ -234,7 +236,8 @@ h2, h3 { color: #07519a; }
 .footer { background: #0d2546; }
 @media (max-width: 1120px) {
   .nav.open { max-height: calc(100dvh - var(--header-height)); overflow-y: auto; }
-  .services-trigger { width: 100%; padding: 11px 14px; justify-content: space-between; }
+  .services-link { flex: 1; }
+  .services-trigger { width: 44px; }
   .services-dropdown { position: static; width: 100%; max-width: none; box-shadow: none; margin-block: 4px 8px; }
 }
 @media (max-width: 820px) {

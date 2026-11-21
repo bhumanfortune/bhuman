@@ -23,7 +23,7 @@ function Brand() {
   </a>;
 }
 
-function ServiceNavigation({path, onSelect}: {path:string, onSelect:() => void}) {
+function ServiceNavigation({path}: {path:string}) {
   const [expanded, setExpanded] = useState(false);
   const container = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -40,22 +40,23 @@ function ServiceNavigation({path, onSelect}: {path:string, onSelect:() => void})
   return <div className="services-navigation" ref={container}
     onPointerEnter={event => { if (event.pointerType === 'mouse' && window.matchMedia('(min-width: 1121px)').matches) setExpanded(true); }}
     onPointerLeave={event => { if (event.pointerType === 'mouse' && !event.currentTarget.contains(document.activeElement)) setExpanded(false); }}
-    onFocus={event => { if (!event.currentTarget.contains(event.relatedTarget) && event.target.matches(':focus-visible')) setExpanded(true); }}
     onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setExpanded(false); }}
     onKeyDown={event => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && expanded) {
         event.preventDefault();
         event.stopPropagation();
         trigger.current?.focus();
         setExpanded(false);
       }
     }}>
-    <button className={'services-trigger' + (path.startsWith('/services') ? ' current' : '')} ref={trigger}
-      type="button" aria-expanded={expanded} aria-controls="services-dropdown"
-      onClick={() => setExpanded(!expanded)}>Services <ChevronDown size={14} aria-hidden="true"/></button>
+    <div className="services-controls">
+      <a className="services-link" href="/services" aria-current={path === '/services' ? 'page' : undefined}>Services</a>
+      <button className="services-trigger" ref={trigger}
+        type="button" aria-label="Service pages" aria-expanded={expanded} aria-controls="services-dropdown"
+        onClick={() => setExpanded(value => !value)}><ChevronDown size={16} aria-hidden="true"/></button>
+    </div>
     <ul className="services-dropdown" id="services-dropdown" hidden={!expanded}>
-      {coreIds.map(id => <li key={id}><a href={servicePath + id} onClick={() => { setExpanded(false); onSelect(); }}>{core[id].name}</a></li>)}
-      <li className="services-overview"><a href="/services" onClick={() => { setExpanded(false); onSelect(); }}>View all services</a></li>
+      {coreIds.map(id => <li key={id}><a href={servicePath + id} aria-current={path === servicePath + id ? 'page' : undefined} onClick={() => setExpanded(false)}>{core[id].name}</a></li>)}
     </ul>
   </div>;
 }
@@ -65,23 +66,22 @@ function Header({path}: {path:string}) {
   return <header className="site-header"><div className="shell header-inner">
     <Brand/>
     <button className="menu" type="button" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</button>
-    <nav id="main-nav" aria-label="Main navigation" className={open ? 'nav open' : 'nav'}>
+    <nav id="main-nav" aria-label="Main navigation" className={open ? 'nav open' : 'nav'}
+      onClick={event => { if (event.target instanceof Element && event.target.closest('a')) setOpen(false); }}>
       {navigation.map(([label,href]) => href === '/services'
-        ? <ServiceNavigation key={href} path={path} onSelect={() => setOpen(false)}/>
+        ? <ServiceNavigation key={href} path={path}/>
         : <a key={href} href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
       <ContactLink className="button header-cta"/>
     </nav>
   </div></header>;
 }
 
-function AlsoAvailable({full = false}: {full?: boolean}) {
-  return <section className={full ? 'also-services' : 'contact-banner'} aria-labelledby="also-available">
-    <div className={full ? '' : 'shell banner-inner'}>
-      <div><h2 id="also-available">Also available</h2><p>Websites, branding, and creative support.</p></div>
-      {full ? <div className="cards">{services.filter(service => service.id === 'digital-launch' || service.id === 'creative-studio').map(service =>
+function AlsoAvailable() {
+  return <section className="also-services" aria-labelledby="also-available">
+      <h2 id="also-available">Also available</h2><p>Websites, branding, and creative support.</p>
+      <div className="cards">{services.filter(service => service.id === 'digital-launch' || service.id === 'creative-studio').map(service =>
         <article className="card" id={service.id} key={service.id}><h3>{service.name}</h3><p>{service.tagline}</p><p>{service.summary.split('\n').slice(1).join(' ')}</p></article>
-      )}</div> : <a className="text-link" href="/services/#also-available">Explore websites and creative services</a>}
-    </div>
+      )}</div>
   </section>;
 }
 
@@ -122,15 +122,9 @@ function Home() {
       <div><TextList items={['Work still runs on spreadsheets and email.', 'AI pilots never reach daily use.', 'Tools get built with no owner, security, or audit trail.']}/>
       <p>We fix the process first, add AI where it genuinely pays off, and build governance in from day one.</p></div>
     </div></section>
-    <section className="shell section content-section"><h2>Our services</h2><div className="article"><p><strong>{headline}</strong> {subheading}</p></div><CoreCards/></section>
-    <section className="shell section content-section cares-section" aria-labelledby="cares-heading">
-      <h2 id="cares-heading">How we work with CARES</h2>
-      <Steps items={workSteps} ordered/>
-      <a className="text-link" href="/how-we-work">See how we work</a>
-    </section>
     <section className="shell section content-section"><h2>Why Bhuman Fortune</h2><Steps items={principles}/></section>
     {proofItems.length > 0 && <section className="shell section"><h2>Case studies and credentials</h2><TextList items={proofItems}/></section>}
-    <AlsoAvailable/><ContactBanner home/>
+    <ContactBanner home/>
   </>;
 }
 
@@ -192,7 +186,7 @@ function Inner({path}: {path:string}) {
   return <>
     <section className="page-hero"><div className="shell"><h1>{title}<span>.</span></h1><p>{description}</p></div></section>
     {path === '/initiatives' ? <Initiative/> : <section className="shell section">
-      {path === '/services' && <><CoreCards/><AlsoAvailable full/></>}
+      {path === '/services' && <><div className="article services-intro"><h2>{headline}</h2><p>{subheading}</p></div><CoreCards/><AlsoAvailable/></>}
       {coreIds.some(id => path === servicePath + id) && <ServiceDetail id={path.slice(servicePath.length) as CoreId}/>}
       {path === '/offers' && <div className="cards">{offers.map(([name, duration, deliverables]) =>
         <article className="card" key={name}><h2>{name}</h2><p>{duration}</p><h3>Deliverables</h3>
