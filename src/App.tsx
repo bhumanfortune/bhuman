@@ -138,7 +138,7 @@ function Contact() {
   const interest = useRef<HTMLSelectElement>(null);
   useEffect(() => {
     if (new URLSearchParams(location.search).get('interest') === 'setu' && interest.current) {
-      interest.current.value = 'Bhuman Setu';
+      interest.current.value = 'Other';
     }
     if (location.hash === '#contact-form') document.getElementById('contact-form')?.scrollIntoView();
   }, []);
@@ -149,7 +149,11 @@ function Contact() {
     if (state.busy) return;
     setState({busy:true,message:'',error:false});
     try {
-      const response = await fetch('/api/contact', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form)))});
+      const fields = new FormData(form);
+      if (fields.get('interest') === 'Other' && new URLSearchParams(location.search).get('interest') === 'setu') {
+        fields.set('interest', 'Bhuman Setu');
+      }
+      const response = await fetch('/api/contact', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(fields))});
       const result = await response.json().catch(() => null);
       if (!result || typeof result.message !== 'string') throw new Error('Email delivery is temporarily unavailable. Please email ' + contactEmail + ' or try again later.');
       if (!response.ok) throw new Error(result.message || 'Could not send your inquiry.');
@@ -168,7 +172,6 @@ function Contact() {
         <option value="" disabled>Select an area</option>
         {coreIds.map(id => <option key={id} value={'Bhuman ' + core[id].name}>{core[id].name}</option>)}
         {additionalServices.map(service => <option key={service.id} value={service.name}>{service.label}</option>)}
-        <option>Bhuman Setu</option>
         <option>Other</option>
       </select>
     </label>
