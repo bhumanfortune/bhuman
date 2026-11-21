@@ -14,6 +14,8 @@ The GitHub-connected Pages project `bhuman` builds with `npm run build` and publ
 
 Verify the sending domain in Resend using its supplied DNS records. Keep the existing mailbox provider's MX records. Confirm that `info@bhumanfortune.com` can receive mail, then submit a test inquiry and verify inbox receipt. Pages retains request validation, request size limits, origin checks, and the honeypot. For request rate limiting on Pages, configure a Cloudflare zone rate limiting rule matching `/api/contact`. The standalone Worker uses its existing `CONTACT_LIMIT` binding.
 
+Checklist requests use the same inbox and include the subscriber’s reply address. Reply with the [readiness checklist](docs/ai-and-automation-readiness-checklist.md) to fulfil the request.
+
 ### Standalone Worker deployment
 
 1. Confirm the legal entity and company details, the privacy contact and retention policy, and the final Privacy Policy and Terms. Update the legal pages and their prerender indexing rules after review.

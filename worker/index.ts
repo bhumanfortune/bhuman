@@ -68,8 +68,13 @@ async function contact(request: Request, env: ContactEnv) {
   const organization = value('organization');
   const interest = value('interest');
   const message = value('message');
+  const checklist = fields.kind === 'checklist';
+  const validEmail = email.length <= 254 && /^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(email);
   if (value('website')) return answer(400, 'Your inquiry could not be accepted.');
-  if (!name || name.length > 120 || !/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(email) || email.length > 254 || organization.length > 150 || !interests.has(interest) || message.length < 10 || message.length > 3000) {
+  if (checklist && (!validEmail || fields.consent !== 'yes')) {
+    return answer(400, 'Enter a valid email and confirm consent for the checklist request.');
+  }
+  if (!checklist && (!name || name.length > 120 || !validEmail || organization.length > 150 || !interests.has(interest) || message.length < 10 || message.length > 3000)) {
     return answer(400, 'Check the required fields and try again.');
   }
   const result = await fetch('https://api.resend.com/emails', {
@@ -78,8 +83,10 @@ async function contact(request: Request, env: ContactEnv) {
     signal:AbortSignal.timeout(8000),
     body:JSON.stringify({
       from:env.CONTACT_FROM, to:[contactEmail], reply_to:email,
-      subject:'BHUMAN FORTUNE website inquiry',
-      text:['Name: ' + name, 'Email: ' + email, 'Organization: ' + organization, 'Interest: ' + interest, '', message].join('\n'),
+      subject: checklist ? 'BHUMAN FORTUNE checklist request' : 'BHUMAN FORTUNE website inquiry',
+      text: checklist
+        ? 'Please reply to ' + email + ' with the AI and Automation Readiness Checklist. The visitor consented to email about this request.'
+        : ['Name: ' + name, 'Email: ' + email, 'Organization: ' + organization, 'Interest: ' + interest, '', message].join('\n'),
     }),
   });
   if (!result.ok) {
