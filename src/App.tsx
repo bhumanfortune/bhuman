@@ -105,7 +105,6 @@ function Home() {
   return <>
     <section className="hero"><div className="shell hero-inner">
       <div>
-        <p className="eyebrow"><span/>We Like IT, Love IT and Respect IT.</p>
         <h1 className="positioning-headline">Your Problems.<br/>Our Solutions.<br/><span>A Happier You.</span></h1>
         <p className="hero-copy">Purposeful IT services that solve real challenges and create lasting value.</p>
         <ul className="hero-benefits">{heroBenefits.map(([Icon, title, description]) =>
@@ -116,7 +115,7 @@ function Home() {
         )}</ul>
         <div className="actions"><BookCall label="Let’s Build a Brighter Tomorrow"/><a className="button secondary" href="/offers">See our offers</a></div>
       </div>
-      <div className="hero-visual"><img src="/customer-consultation-laptop.jpg" alt="A consultant shakes hands with a customer beside a laptop that reads Good Ideas Solve Big Problems." width="1448" height="1086" fetchPriority="high"/></div>
+      <div className="hero-visual"><img src="/customer-consultation-logo.jpg" alt="A consultant shakes hands with a customer beside a laptop bearing the Bhuman Fortune lotus logo." width="1448" height="1086" fetchPriority="high"/></div>
     </div></section>
     <section className="shell section"><div className="homepage-problem">
       <h2>Most automation and AI projects stall for the same reasons.</h2>
