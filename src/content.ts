@@ -157,7 +157,7 @@ export const pages = {
   '/industries': ['Industries', 'Supporting startups, SMEs, manufacturers, service organizations, educators, creators, NGOs, and enterprise teams.'],
   '/initiatives': ['Bhuman Setu', 'A pilot to help nearby small businesses pool demand, share capacity, and exchange surplus.'],
   '/insights': ['Insights', 'Request the free AI and Automation Readiness Checklist and explore upcoming articles.'],
-  '/contact': ['Contact', 'Tell BHUMAN FORTUNE about your technology project or collaboration.'],
+  '/contact': ['Contact us', 'Tell BHUMAN FORTUNE about your technology project or collaboration.'],
   '/privacy': ['Privacy Policy', 'Website privacy notice for BHUMAN FORTUNE.'],
   '/terms': ['Terms', 'Website terms for BHUMAN FORTUNE.'],
 } as const;

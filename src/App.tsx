@@ -186,7 +186,6 @@ function Contact() {
 function ContactDetails() {
   return <>
     <div className="contact-layout"><div className="article">
-      <h2>Contact us</h2>
       <p>We reply within one working day.</p>
       <p><a className="text-link" href={'mailto:' + contactEmail}>{contactEmail}</a></p>
     </div><Contact/></div>
@@ -201,7 +200,7 @@ function Inner({path}: {path:string}) {
   const [title, description] = pages[path];
   if (path === '/about') return <section className="page-hero"><div className="shell"><h1>About</h1></div></section>;
   return <>
-    <section className="page-hero"><div className="shell"><h1>{title}<span>.</span></h1><p>{description}</p></div></section>
+    <section className="page-hero"><div className="shell"><h1>{title}{path !== '/contact' && <span>.</span>}</h1><p>{description}</p></div></section>
     {path === '/initiatives' ? <Initiative/> : <section className="shell section">
       {path === '/services' && <><div className="article services-intro"><h2>{headline}</h2><p>{subheading}</p></div><CoreCards/><AlsoAvailable/></>}
       {coreIds.some(id => path === servicePath + id) && <ServiceDetail id={path.slice(servicePath.length) as CoreId}/>}
