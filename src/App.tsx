@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ChartNoAxesCombined, ChevronDown, Cog, Lightbulb, Menu, Network, Users, X } from 'lucide-react';
 import { contactEmail, industries, isPage, pages, services, solutions } from './content';
 import { bookingUrl, core, coreIds, faq, headline, offers, phone, principles, proofItems, setu, subheading, workSteps, articles, type CoreId } from './positioning';
-import { BookCall, ChecklistSignup, CoreCards, LegalCopy, ServiceDetail, Steps, TextList } from './SiteSections';
+import { ChecklistSignup, ContactLink, CoreCards, LegalCopy, ServiceDetail, Steps, TextList } from './SiteSections';
 
 const navigation = [['Services','/services'],['Offers','/offers'],['How We Work','/how-we-work'],['Insights','/insights'],['Bhuman Setu','/initiatives'],['About','/about'],['Contact','/contact']];
 const servicePath = '/services/';
@@ -69,7 +69,7 @@ function Header({path}: {path:string}) {
       {navigation.map(([label,href]) => href === '/services'
         ? <ServiceNavigation key={href} path={path} onSelect={() => setOpen(false)}/>
         : <a key={href} href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
-      <BookCall className="button header-cta"/>
+      <ContactLink className="button header-cta"/>
     </nav>
   </div></header>;
 }
@@ -96,8 +96,8 @@ function Initiative() {
 function ContactBanner({home = false}: {home?: boolean}) {
   return <section className="contact-banner"><div className="shell banner-inner">
     <div><h2>{home ? 'Not sure where to start?' : 'Let’s talk about your next project.'}</h2>
-    {home && <p>Book a free 30-minute call. We’ll look at one of your processes and tell you honestly whether automation or AI is worth pursuing.</p>}</div>
-    <BookCall/>
+    {home && <p>Tell us about one of your processes. We’ll tell you honestly whether automation or AI is worth pursuing.</p>}</div>
+    <ContactLink/>
   </div></section>;
 }
 
@@ -113,7 +113,7 @@ function Home() {
             <span><strong>{title}</strong>{' '}<span>{description}</span></span>
           </li>
         )}</ul>
-        <div className="actions"><BookCall label="Let’s Build a Brighter Tomorrow"/><a className="button secondary" href="/offers">See our offers</a></div>
+        <div className="actions"><ContactLink label="Let’s Build a Brighter Tomorrow"/><a className="button secondary" href="/offers">See our offers</a></div>
       </div>
       <div className="hero-visual"><img src="/customer-consultation-logo.jpg" alt="A consultant shakes hands with a customer beside a laptop bearing the Bhuman Fortune lotus logo." width="1448" height="1086" fetchPriority="high"/></div>
     </div></section>
@@ -175,10 +175,10 @@ function Contact() {
 function ContactDetails() {
   return <>
     <div className="contact-layout"><div className="article">
-      <h2>Book a free call</h2>
+      <h2>Contact us</h2>
       <p>Mumbai, India</p><p>We reply within one working day.</p>
       <p><a className="text-link" href={'mailto:' + contactEmail}>{contactEmail}</a></p>
-      {bookingUrl ? <p><BookCall/></p> : <p>[Booking link]</p>}
+      {bookingUrl ? <p><a className="text-link" href={bookingUrl}>Schedule a call</a></p> : <p>[Booking link]</p>}
       <p>{phone ? <><a className="text-link" href={'tel:' + phone}>Call {phone}</a> · <a className="text-link" href={'https://wa.me/' + phone.replace(/\D/g, '')}>WhatsApp</a></> : '[Phone / WhatsApp number]'}</p>
     </div><Contact/></div>
     <section className="faq"><h2>Frequently asked questions</h2>

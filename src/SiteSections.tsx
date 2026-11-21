@@ -1,10 +1,10 @@
 import { useState, type FormEvent } from 'react';
 import { CircuitBoard, GitBranch, Layers3 } from 'lucide-react';
 import { contactEmail } from './content';
-import { bookingUrl, checklistTitle, core, coreIds, legal, type CoreId } from './positioning';
+import { checklistTitle, core, coreIds, legal, type CoreId } from './positioning';
 
-export function BookCall({label = 'Book a free call', className = 'button primary'}: {label?: string; className?: string}) {
-  return <a className={className} href={bookingUrl || '/contact/#contact-form'}>{label}</a>;
+export function ContactLink({label = 'Contact us', className = 'button primary'}: {label?: string; className?: string}) {
+  return <a className={className} href="/contact/#contact-form">{label}</a>;
 }
 
 export function TextList({items}: {items: readonly string[]}) {
