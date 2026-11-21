@@ -51,10 +51,12 @@ h1 span { color: #b1e481; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 27px; }
 .scroll-link { display: inline-flex; align-items: center; gap: 9px; padding-top: 47px; color: #d6dfec; font-size: 12px; }
 .scroll-link svg { color: var(--color-accent); }
-.section { padding-block: 72px 84px; }
+.section { padding-block: clamp(28px, 3.5vw, 44px) clamp(32px, 4vw, 48px); }
+.section + .section { padding-block-start: 0; }
 .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 32px; }
 h2 { font-size: clamp(28px, 4.4vw, 50px); line-height: 1.06; letter-spacing: -.055em; }
 .section h2, .initiative h2 { margin-top: 13px; }
+.section > h2:first-child { margin-top: 0; }
 .section-description { max-width: 620px; color: #46556a; line-height: 1.65; margin-top: 14px; }
 .text-link { display: inline-flex; align-items: center; gap: 8px; color: #07519a; font-size: 14px; font-weight: 750; width: fit-content; white-space: nowrap; }
 .text-link:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -68,7 +70,7 @@ h3 { font-size: 21px; letter-spacing: -.025em; }
 .card p, .article p { color: #46556a; line-height: 1.65; margin-top: 8px; }
 .card .text-link { margin-top: 16px; }
 .initiative { color: white; background: #14243b; }
-.initiative-grid { display: grid; grid-template-columns: 1fr .8fr; gap: 45px; align-items: center; padding-block: 65px; }
+.initiative-grid { display: grid; grid-template-columns: 1fr .8fr; gap: 45px; align-items: center; padding-block: clamp(28px, 4vw, 48px); }
 .initiative p:not(.eyebrow) { color: #d9e2ef; line-height: 1.65; margin-block: 12px; max-width: 485px; }
 .initiative .initiative-status { font-weight: 750; }
 .initiative .text-link { color: #b1e481; margin-top: 12px; }
@@ -115,10 +117,9 @@ button:disabled { cursor: wait; opacity: .7; }
 @media (max-width: 620px) {
   .shell { width: calc(100% - 36px); }
   html { --header-height: 70px; }
-  .section { padding-block: 48px; }
   .section-head, .banner-inner, .footer-inner { flex-direction: column; align-items: flex-start; }
   .cards, .initiative-grid, .contact-layout, .form-grid { grid-template-columns: 1fr; }
-  .initiative-grid { gap: 22px; padding-block: 48px; }
+  .initiative-grid { gap: 22px; }
   .initiative-art { min-height: 155px; }
   .contact-layout { gap: 24px; }
   .banner-inner { gap: 12px; }
@@ -177,9 +178,8 @@ h2, h3 { color: #07519a; }
 .content-section > .cards, .also-services > .cards { margin-top: 24px; }
 .section .card h2 { font-size: clamp(1.35rem, 2.5vw, 2rem); margin-top: 0; }
 .section .card h2 ~ h3 { font-size: 1rem; margin-top: 16px; }
-.content-section + .content-section { padding-top: 0; }
 .content-section > .text-link { margin-top: 20px; }
-.also-services, .insights-list, .faq { margin-top: 48px; }
+.also-services, .insights-list, .faq { margin-top: clamp(24px, 3vw, 36px); }
 .copy-list { list-style: disc; padding-inline-start: 24px; margin-block: 12px 18px; line-height: 1.65; color: #46556a; }
 .copy-list li + li { margin-top: 6px; }
 .process-grid { list-style: none; }
@@ -204,7 +204,7 @@ h2, h3 { color: #07519a; }
 /* Lotus palette accents complement the darker blue and green used for text and actions. */
 .site-header { border-top: 3px solid transparent; border-image: var(--lotus-spectrum) 1; }
 .hero { background: radial-gradient(ellipse at 90% 25%, #eff8e9, transparent 55%), linear-gradient(120deg, #eef6ff, #fff 66%); color: var(--color-ink); border-bottom: 1px solid #dce7f3; }
-.hero-inner { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: clamp(24px, 4vw, 64px); min-height: unset; padding-block: clamp(40px, 6vw, 84px); }
+.hero-inner { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: clamp(24px, 4vw, 64px); min-height: unset; padding-block: clamp(32px, 4.5vw, 64px); }
 .hero .eyebrow { color: #07519a; }
 .hero-copy { color: #40536c; max-width: 580px; }
 .positioning-headline { color: #0c3467; font-size: clamp(2.35rem, 4.2vw, 4.45rem); line-height: 1.1; letter-spacing: -.045em; text-wrap: balance; }
