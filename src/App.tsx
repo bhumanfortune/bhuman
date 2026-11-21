@@ -6,7 +6,9 @@ import { ChecklistSignup, ContactLink, CoreCards, LegalCopy, ServiceDetail, Step
 
 const navigation = [['Services','/services'],['Offers','/offers'],['How We Work','/how-we-work'],['Insights','/insights'],['About','/about']];
 const servicePath = '/services/';
-const additionalServices = services.filter(service => service.id === 'digital-launch' || service.id === 'creative-studio');
+const additionalServices = services
+  .filter(service => service.id === 'digital-launch' || service.id === 'creative-studio')
+  .map(service => ({...service, label: service.name.replace(/^Bhuman /, '')}));
 const heroBenefits = [
   [Lightbulb, 'Solve', 'Challenges'],
   [Cog, 'Provide', 'Purposeful Services'],
@@ -59,7 +61,7 @@ function ServiceNavigation({path}: {path:string}) {
     <ul className="services-dropdown" id="services-dropdown" hidden={!expanded}
       onClick={event => { if (event.target instanceof Element && event.target.closest('a')) setExpanded(false); }}>
       {coreIds.map(id => <li key={id}><a href={servicePath + id} aria-current={path === servicePath + id ? 'page' : undefined}>{core[id].name}</a></li>)}
-      {additionalServices.map(service => <li key={service.id}><a href={servicePath + '#' + service.id}>{service.name}</a></li>)}
+      {additionalServices.map(service => <li key={service.id}><a href={servicePath + '#' + service.id}>{service.label}</a></li>)}
       <li className="services-overview"><a href="/services" aria-current={path === '/services' ? 'page' : undefined}>View all services</a></li>
     </ul>
   </div>;
@@ -165,7 +167,7 @@ function Contact() {
       <select ref={interest} name="interest" required defaultValue="">
         <option value="" disabled>Select an area</option>
         {coreIds.map(id => <option key={id} value={'Bhuman ' + core[id].name}>{core[id].name}</option>)}
-        {additionalServices.map(service => <option key={service.id}>{service.name}</option>)}
+        {additionalServices.map(service => <option key={service.id} value={service.name}>{service.label}</option>)}
         <option>Bhuman Setu</option>
         <option>Other</option>
       </select>
