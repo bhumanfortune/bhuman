@@ -161,7 +161,15 @@ function Contact() {
   return <form id="contact-form" className="contact-form card" action="/api/contact" method="post" onSubmit={submit}>
     <div className="form-grid"><label>Name <input name="name" required maxLength={120} autoComplete="name"/></label><label>Work email <input name="email" type="email" required maxLength={254} autoComplete="email"/></label></div>
     <label>Organization <span>(optional)</span><input name="organization" maxLength={150} autoComplete="organization"/></label>
-    <label>Area of interest<select ref={interest} name="interest" required defaultValue=""><option value="" disabled>Select an area</option>{services.map(s => <option key={s.id}>{s.name}</option>)}<option>Bhuman Setu</option><option>Other</option></select></label>
+    <label>Area of interest
+      <select ref={interest} name="interest" required defaultValue="">
+        <option value="" disabled>Select an area</option>
+        {coreIds.map(id => <option key={id} value={'Bhuman ' + core[id].name}>{core[id].name}</option>)}
+        {additionalServices.map(service => <option key={service.id}>{service.name}</option>)}
+        <option>Bhuman Setu</option>
+        <option>Other</option>
+      </select>
+    </label>
     <label>How can we help?<textarea rows={6} name="message" minLength={10} maxLength={3000} required/></label>
     <div hidden><label>Website<input name="website" autoComplete="off" tabIndex={-1}/></label></div>
     <p className="form-note">Share only the information needed for your inquiry. See our <a href="/privacy">privacy notice</a>.</p>
